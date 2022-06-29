@@ -19,4 +19,3 @@ qmk compile -kb kbdfans/kbd67/mkiirgb/v3 -km tohhongxiang
 2. Press `Fn` + `Alt` to toggle between Mac and Windows layer. Mac causes `alt` == `cmd` and `win` == `option`
 3. Holding `Fn` activates the function layer (Pressing `fn` + `1` is `f1`)
 4. `Esc` key normally, but `` ` `` key when `fn` is pressed
-5. `LShift` when held, `(` when tapped, and `RShift` when held, `)` when tapped

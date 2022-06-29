@@ -10,7 +10,6 @@ enum LAYERS {
 };
 
 int LAYER_COLORS_HSV[][3] = { {HSV_GOLD}, {HSV_AZURE}, {HSV_TEAL}, {HSV_RED} };
-int LAYER_COLORS_RGB[][3] = { {RGB_GOLD}, {RGB_AZURE}, {RGB_TEAL}, {RGB_RED} };
 
 #define ARRAYSIZE(x)  (sizeof(x) / sizeof((x)[0]))
 
@@ -19,7 +18,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 			KC_GESC,                    KC_1,     KC_2,     KC_3,  KC_4,  KC_5,  KC_6,    KC_7,  KC_8,    KC_9,     KC_0,     KC_MINS,  KC_EQL,  KC_BSPC,   KC_DEL,
 		    KC_TAB,                     KC_Q,     KC_W,     KC_E,  KC_R,  KC_T,  KC_Y,    KC_U,  KC_I,    KC_O,     KC_P,     KC_LBRC,  KC_RBRC, KC_BSLASH, KC_PGUP,
 			LT(NUMPAD_LAYER, KC_CAPS),  KC_A,     KC_S,     KC_D,  KC_F,  KC_G,  KC_H,    KC_J,  KC_K,    KC_L,     KC_SCLN,  KC_QUOT,           KC_ENT,    KC_PGDN,
-		    KC_LSPO,                    KC_Z,     KC_X,     KC_C,  KC_V,  KC_B,  KC_N,    KC_M,  KC_COMM, KC_DOT,   KC_SLSH,  KC_RSPC,           KC_UP,     KC_END,
+		    KC_LSFT,                    KC_Z,     KC_X,     KC_C,  KC_V,  KC_B,  KC_N,    KC_M,  KC_COMM, KC_DOT,   KC_SLSH,  KC_RSFT,           KC_UP,     KC_END,
 		    KC_LCTL,                    KC_LGUI,  KC_LALT,                KC_SPC,                        MO(FUNCTION_LAYER),  KC_RCTL,  KC_LEFT, KC_DOWN,   KC_RIGHT),
 
 		[MAC_LAYER] = LAYOUT_65_ansi_blocker(
@@ -65,16 +64,22 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 void rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
 	int current_layer = biton32(layer_state);
 
-	rgb_matrix_set_color(LED_ESC, LAYER_COLORS_RGB[current_layer][0], LAYER_COLORS_RGB[current_layer][1], LAYER_COLORS_RGB[current_layer][2]);
+	HSV current_hsv;
+	current_hsv.h = LAYER_COLORS_HSV[current_layer][0];
+	current_hsv.s = LAYER_COLORS_HSV[current_layer][1];
+	current_hsv.v = LAYER_COLORS_HSV[current_layer][2];
+	RGB current_rgb = hsv_to_rgb(current_hsv);
+
+	rgb_matrix_set_color(LED_ESC, current_rgb.r, current_rgb.g, current_rgb.b);
 
 	int is_caps_lock_enabled = IS_HOST_LED_ON(USB_LED_CAPS_LOCK);
     if (is_caps_lock_enabled) {
-		rgb_matrix_set_color(LED_CAPS, LAYER_COLORS_RGB[current_layer][0], LAYER_COLORS_RGB[current_layer][1], LAYER_COLORS_RGB[current_layer][2]);
+		rgb_matrix_set_color(LED_CAPS, current_rgb.r, current_rgb.g, current_rgb.b);
     }
 
 	if (current_layer == NUMPAD_LAYER) {
 		for (uint8_t i = 0; i < ARRAYSIZE(LED_LIST_NUMPAD); i++) {
-			rgb_matrix_set_color(LED_LIST_NUMPAD[i], LAYER_COLORS_RGB[current_layer][0], LAYER_COLORS_RGB[current_layer][1], LAYER_COLORS_RGB[current_layer][2]);
+			rgb_matrix_set_color(LED_LIST_NUMPAD[i], current_rgb.r, current_rgb.g, current_rgb.b);
 		}
 	}
 }
