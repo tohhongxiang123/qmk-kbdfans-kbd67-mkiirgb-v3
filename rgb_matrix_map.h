@@ -18,7 +18,7 @@
 
     // Custom RGB Colours
     #define RGB_GODSPEED 0x00, 0xE4, 0xFF // colour for matching keycaps
-    #define RGB_NAUTILUS 0x00, 0xA4, 0xA9 // Naurilus Font colours
+    #define RGB_NAUTILUS 0x00, 0xA4, 0xA9 // Nautilus Font colours
     #define RGB_PURPLELITE 0x80, 0x00, 0x80 // Purple colours
 
     // RGB LED locations

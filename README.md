@@ -19,3 +19,9 @@ qmk compile -kb kbdfans/kbd67/mkiirgb/v3 -km tohhongxiang
 2. Press `Fn` + `Alt` to toggle between Mac and Windows layer. Mac causes `alt` == `cmd` and `win` == `option`
 3. Holding `Fn` activates the function layer (Pressing `fn` + `1` is `f1`)
 4. `Esc` key normally, but `` ` `` key when `fn` is pressed
+
+# Resources
+
+- https://docs.qmk.fm/#/
+- https://www.reddit.com/r/olkb/comments/a0texz/whatre_your_favorite_qmk_hacks/
+- https://www.keebtalk.com/t/qmk-tap-dancing-and-one-shot-layers-quick-demo/4970
