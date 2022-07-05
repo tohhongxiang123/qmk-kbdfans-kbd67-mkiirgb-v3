@@ -16,7 +16,7 @@ qmk compile -kb kbdfans/kbd67/mkiirgb/v3 -km tohhongxiang
 # Features
 
 1. Layers: Base (windows) layer, mac, function keys, numpad
-2. Press `Fn` + `Alt` to toggle between Mac and Windows layer. Mac causes `alt` == `cmd` and `win` == `option`
+2. Press `Win` + `Alt` to toggle between Mac and Windows layer. Mac causes `alt` == `cmd` and `win` == `option`
 3. Holding `Fn` activates the function layer (Pressing `fn` + `1` is `f1`)
 4. `Esc` key normally, but `` ` `` key when `fn` is pressed
 
